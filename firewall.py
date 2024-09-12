@@ -40,17 +40,17 @@ class rules: # establish the parameters for the packet, what each packet needs t
         # (self.protocol == packet.protocol or self.protocol == "any")
     
 class Firewall:
-    def __init__(self):
+    def __init__(self): # create empty rules and log lists, ready to be populated later
         self.rules = []
         self.log = []
 
     def add_rule(self, rule):
         self.rules.append(rule)
 
-    def log_traffic(self,packet, action):
+    def log_traffic(self,packet, action):  # tracks the action and packet that is passed
         self.log.append(f"{action.upper()}: {packet}")
 
-    def process_packets(self,packet):
+    def process_packets(self,packet): # checks to see if the packets match the rules that have been set for the block or allow
         for rule in self.rules:
             if rule.matches(packet):
                 self.log_traffic(packet, rule.action)
@@ -58,7 +58,7 @@ class Firewall:
         self.log_traffic(packet, "block")
         return False
 
-    def show_log(self):
+    def show_log(self): # simply shows the logs
         for event in self.log:
             print(event)
 
