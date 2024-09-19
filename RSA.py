@@ -89,7 +89,7 @@ if __name__ == "__main__":
     
     private_key, public_key = rsa.load_keys("keys_file.yaml", label=label)
     
-    message = "anna is sexy as fuck"
+    message = "this is a secret message hidden with RSA"
 
     encrypted_message = rsa.encrypt_message(message, public_key)
     print(f"message successfully encrypted {encrypted_message}")
